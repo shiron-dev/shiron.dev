@@ -24,6 +24,6 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@shiron4710/eslint-config": "^1.0.4"
+    "@shiron4710/eslint-config": "^1.0.5"
   }
 }
