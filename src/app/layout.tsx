@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -15,7 +16,12 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className={"z-10 w-full fixed top-0 left-0 "}>
+          <Header></Header>
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
