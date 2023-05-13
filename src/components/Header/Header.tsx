@@ -6,7 +6,7 @@ export const Header = (): JSX.Element => {
   return (
     <div className={"header flex items-center justify-between text-2xl px-16"}>
       <Link href={"/"}>
-        <h1 className={"logo mx-1 my-2"}>shiron.dev</h1>
+        <h5 className={"logo mx-1 my-2"}>shiron.dev</h5>
       </Link>
       <div className={"flex"}>
         <Link href={"/"}>Home</Link>

@@ -6,7 +6,7 @@ import "./footer.scss";
 export const Footer = (): JSX.Element => {
   return (
     <div
-      className={"footer flex items-center justify-between text-xl px-16 py-2"}
+      className={"footer flex items-center justify-between text-2xl px-16 py-2"}
     >
       <div>©2023 shiron4710</div>
       <button
