@@ -18,3 +18,7 @@ body {
   color: var(--foreground-color);
   background: var(--background-color);
 }
+
+.grecaptcha-badge {
+  visibility: hidden;
+}

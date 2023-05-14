@@ -3,29 +3,25 @@
 import { type EmailType } from "@/app/api/email/route";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import Script from "next/script";
-import React, { useRef, useState } from "react";
+import React, { useContext } from "react";
+import { RecaptchaContext } from "./RecaptchaContext";
+import { emailsState } from "../../../stores/emails";
+import { useRecoilState } from "recoil";
 
 interface Props {
   email: EmailType;
 }
 
-const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
-
 export const EmailButton = (props: Props): JSX.Element => {
-  const token = useRef("");
-  const [buttonText, setButtonText] = useState(props.email);
-
-  const getToken = (): void => {
-    grecaptcha.ready(() => {
-      void grecaptcha.execute(SITE_KEY, { action: "submit" }).then((tk) => {
-        token.current = tk;
-      });
-    });
-  };
+  const [emails, setEmails] = useRecoilState(emailsState);
+  const { recaptchaToken } = useContext(RecaptchaContext);
+  const buttonText =
+    emails !== undefined
+      ? emails[props.email]
+      : `${props.email} (Click to show)`;
 
   const onVerify = (): void => {
-    fetch(`/api/email?type=${props.email}&&token=${token.current}`, {
+    fetch(`/api/email?token=${recaptchaToken?.current ?? ""}`, {
       method: "POST",
     })
       .then((res) => {
@@ -33,7 +29,8 @@ export const EmailButton = (props: Props): JSX.Element => {
           .json()
           .then((data) => {
             if (data.success as boolean) {
-              setButtonText(data.email);
+              console.log(data);
+              setEmails(data.emails);
             } else {
               alert(
                 "Error: I couldn't tell if it was human or not. Please reload the page once."
@@ -51,13 +48,7 @@ export const EmailButton = (props: Props): JSX.Element => {
 
   return (
     <div>
-      <Script
-        src={`https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`}
-        onLoad={() => {
-          getToken();
-        }}
-      />
-      {buttonText === props.email ? (
+      {emails === undefined ? (
         <button
           className="flex items-center p-1"
           onClick={() => {

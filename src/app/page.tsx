@@ -1,10 +1,8 @@
-import { Inter } from "next/font/google";
 import "./index.scss";
 import { SkillStack } from "@/components/layout/index/SkillStack";
 import { LinkButton } from "@/components/layout/index/LinkButton";
 import { EmailButton } from "@/components/layout/index/EmailButton";
-
-const inter = Inter({ subsets: ["latin"] });
+import { RecaptchaProvider } from "@/components/layout/index/RecaptchaContext";
 
 export default async function Home(): Promise<JSX.Element> {
   return (
@@ -85,7 +83,10 @@ export default async function Home(): Promise<JSX.Element> {
             name="shiron4710"
             href="https://www.wantedly.com/id/shiron4710"
           />
-          <EmailButton email="main" />
+          <RecaptchaProvider>
+            <EmailButton email="main" />
+            <EmailButton email="dev" />
+          </RecaptchaProvider>
         </div>
       </div>
     </main>

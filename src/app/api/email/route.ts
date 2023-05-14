@@ -1,3 +1,4 @@
+import { type Emails } from "@/stores/emails";
 import { NextResponse } from "next/server";
 
 const SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY ?? "";
@@ -9,21 +10,14 @@ export type EmailType = "main" | "dev";
 export async function POST(request: Request): Promise<Response> {
   const { searchParams } = new URL(request.url);
   const token = searchParams.get("token");
-  const emailType = searchParams.get("type") as EmailType | null;
-  if (token === null || emailType === null) return NextResponse.error();
+  if (token === null) return new Response("Missing token", { status: 400 });
 
   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
   const response = await fetch(url, { method: "POST" });
   const data = await response.json();
-  const emailAddress = ((): string => {
-    if (!(data.success as boolean)) return "";
-    switch (emailType) {
-      case "main":
-        return EMAIL_MAIN;
-      case "dev":
-        return ENAIL_DEV;
-    }
-    return "";
-  })();
-  return NextResponse.json({ success: data.success, email: emailAddress });
+  const emails: Emails = { main: EMAIL_MAIN, dev: ENAIL_DEV };
+  return NextResponse.json({
+    success: data.success,
+    emails,
+  });
 }
