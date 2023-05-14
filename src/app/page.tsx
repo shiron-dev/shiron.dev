@@ -2,10 +2,11 @@ import { Inter } from "next/font/google";
 import "./index.scss";
 import { SkillStack } from "@/components/layout/index/SkillStack";
 import { LinkButton } from "@/components/layout/index/LinkButton";
+import { EmailButton } from "@/components/layout/index/EmailButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home(): JSX.Element {
+export default async function Home(): Promise<JSX.Element> {
   return (
     <main className="p-24">
       <div className="text-center">
@@ -84,6 +85,7 @@ export default function Home(): JSX.Element {
             name="shiron4710"
             href="https://www.wantedly.com/id/shiron4710"
           />
+          <EmailButton email="main" />
         </div>
       </div>
     </main>
