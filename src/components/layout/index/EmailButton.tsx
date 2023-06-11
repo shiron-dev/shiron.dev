@@ -1,65 +1,39 @@
 "use client";
 
-import { type EmailType } from "@/app/api/email/route";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import React, { useContext } from "react";
-import { RecaptchaContext } from "./RecaptchaContext";
-import { emailsState } from "../../../stores/emails";
-import { useRecoilState } from "recoil";
+import React, { useContext, useState } from "react";
+import { type EmailType, RecaptchaContext } from "./RecaptchaContext";
 
 interface Props {
   email: EmailType;
 }
 
 export const EmailButton = (props: Props): JSX.Element => {
-  const [emails, setEmails] = useRecoilState(emailsState);
-  const { recaptchaToken } = useContext(RecaptchaContext);
-  const buttonText =
-    emails !== undefined
-      ? emails[props.email]
-      : `${props.email} (Click to show)`;
-
-  const onVerify = (): void => {
-    fetch(`/api/email?token=${recaptchaToken?.current ?? ""}`, {
-      method: "POST",
-    })
-      .then((res) => {
-        res
-          .json()
-          .then((data) => {
-            if (data.success as boolean) {
-              console.log(data);
-              setEmails(data.emails);
-            } else {
-              alert(
-                "Error: I couldn't tell if it was human or not. Please reload the page once."
-              );
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  const { getEmail } = useContext(RecaptchaContext);
+  const [text, setText] = useState(props.email as string);
 
   return (
     <div>
-      {emails === undefined ? (
+      {text === props.email ? (
         <button
           className="flex items-center p-1"
           onClick={() => {
-            onVerify();
+            if (getEmail != null)
+              getEmail(props.email)
+                .then((text) => {
+                  setText(text);
+                })
+                .catch((e) => {
+                  console.error(e);
+                });
           }}
         >
-          {inButtonContents(buttonText)}
+          {inButtonContents(text)}
         </button>
       ) : (
-        <Link className="flex items-center p-1" href={`mailto:${buttonText}`}>
-          {inButtonContents(buttonText)}
+        <Link className="flex items-center p-1" href={`mailto:${text}`}>
+          {inButtonContents(text)}
         </Link>
       )}
     </div>
