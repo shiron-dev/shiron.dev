@@ -51,6 +51,16 @@ export default async function Home(): Promise<JSX.Element> {
               "Container(Docker,Kubernetes)",
               "Data Store(Ceph)",
               "Network(LB,CDN)",
+              "Monitoring(Prometheus, Grafana)",
+            ]}
+          />
+          <SkillStack
+            category="Others"
+            skills={[
+              "CI/CD(GitHub Actions, CircleCI, Jenkins)",
+              "Android",
+              "Unity",
+              "Blender",
             ]}
           />
         </div>

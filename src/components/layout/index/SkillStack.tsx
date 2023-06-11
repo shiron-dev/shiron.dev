@@ -10,7 +10,9 @@ export const SkillStack = (props: Props): JSX.Element => {
     <div>
       <h5 className="text-3xl">{props.category}</h5>
       {props.skills.map((skill) => (
-        <div className="text-2xl ml-8 my-2">{skill}</div>
+        <div className="text-2xl ml-8 my-2" key={skill}>
+          {skill}
+        </div>
       ))}
     </div>
   );
