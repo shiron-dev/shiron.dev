@@ -3,7 +3,7 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
-import { type EmailType, RecaptchaContext } from "./RecaptchaContext";
+import { type EmailType, RecaptchaContext } from "../RecaptchaContext";
 
 interface Props {
   email: EmailType;

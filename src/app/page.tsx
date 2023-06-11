@@ -1,8 +1,8 @@
 import "./index.scss";
-import { SkillStack } from "@/components/layout/index/SkillStack";
-import { LinkButton } from "@/components/layout/index/LinkButton";
-import { EmailButton } from "@/components/layout/index/EmailButton";
-import { RecaptchaProvider } from "@/components/layout/index/RecaptchaContext";
+import { SkillStack } from "./_components/SkillStack";
+import { LinkButton } from "./_components/LinkButton";
+import { EmailButton } from "./_components/EmailButton";
+import { RecaptchaProvider } from "./_components/RecaptchaContext";
 
 export default async function Home(): Promise<JSX.Element> {
   return (

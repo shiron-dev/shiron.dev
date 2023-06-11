@@ -1,4 +1,4 @@
-import { LinkButton } from "@/components/layout/index/LinkButton";
+import { LinkButton } from "@/app/_components/LinkButton";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof LinkButton> = {
