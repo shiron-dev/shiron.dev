@@ -1,9 +1,10 @@
 main {
   h3 {
-    font-size: 48px;
+    @apply text-3xl;
   }
+
   > div {
-    margin: 40px 0;
+    @apply my-10;
     padding: 20px 40px;
   }
 

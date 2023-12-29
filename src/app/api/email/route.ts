@@ -1,4 +1,4 @@
-import { type Emails } from "@/components/layout/index/RecaptchaContext";
+import { type Emails } from "@/app/_components/RecaptchaContext";
 import { NextResponse } from "next/server";
 
 const SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY ?? "";

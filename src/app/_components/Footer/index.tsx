@@ -9,7 +9,7 @@ export const Footer = (): JSX.Element => {
   };
   return (
     <div
-      className={"footer flex items-center justify-between text-2xl py-2 px-20"}
+      className={"footer flex items-center justify-between px-20 py-2 text-2xl"}
     >
       <div>©2023 shiron4710</div>
       <button

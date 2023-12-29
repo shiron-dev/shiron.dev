@@ -1,5 +1,11 @@
 {
-  "extends": ["@shiron4710/eslint-config", "@shiron4710/eslint-config/next", "@shiron4710/eslint-config/storybook","@shiron4710/eslint-config/prettier"],
+  "extends": [
+    "@shiron4710/eslint-config",
+    "@shiron4710/eslint-config/next",
+    "@shiron4710/eslint-config/storybook",
+    "@shiron4710/eslint-config/prettier",
+    "@shiron4710/eslint-config/tailwind"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   }

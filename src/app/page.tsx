@@ -1,4 +1,5 @@
-import "./index.scss";
+"use client";
+import "./index.css";
 import { SkillStack } from "./_components/SkillStack";
 import { LinkButton } from "./_components/LinkButton";
 import { EmailButton } from "./_components/EmailButton";
@@ -8,18 +9,16 @@ export default async function Home(): Promise<JSX.Element> {
   return (
     <main className="p-24">
       <div className="text-center">
-        <h2 className="text-5xl my-1">shiron4710</h2>
-        <h3 className="text-4xl">
-          Student engineers interested in diverse areas
-        </h3>
+        <h2 className="my-1 text-4xl">shiron4710</h2>
+        <h3>Student engineers interested in diverse areas</h3>
         <div>
           フロントエンド、サーバーサイド、インフラに興味があり、
           最新の技術を追い続ける技術愛好家な学生エンジニア。
         </div>
       </div>
-      <div className="text-2xl">
+      <div>
         <h3>About</h3>
-        <div className="ml-6 my-4">
+        <div className="my-4 ml-6 text-xl">
           <div>@shiron4710</div>
           <div className="mt-3">
             私は様々な言語での開発経験があり、フロントエンド、サーバーサイド、インフラなどの様々な分野に興味があります。また、最新の技術に興味を持ち、常に学習し続けています。

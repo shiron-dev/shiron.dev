@@ -43,8 +43,8 @@ export const EmailButton = (props: Props): JSX.Element => {
 const inButtonContents = (buttonText: string): JSX.Element => {
   return (
     <>
-      <Icon icon="material-symbols:mail-outline" className="w-12 h-12" />
-      <h6 className="text-3xl ml-4">{buttonText}</h6>
+      <Icon icon="material-symbols:mail-outline" className="h-12 w-12" />
+      <h6 className="ml-4 text-3xl">{buttonText}</h6>
     </>
   );
 };
